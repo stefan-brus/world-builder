@@ -34,6 +34,8 @@ public class Main {
 
         MainWindow mainWindow = new MainWindow(shell, SWT.NONE);
         Controllers controllers = new Controllers(mainWindow);
+        
+        
 
         shell.pack();
         shell.open();

@@ -3,6 +3,7 @@
 	<name>WorldBuilder</name>
 	<comment></comment>
 	<projects>
+		<project>org.eclipse.swt</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

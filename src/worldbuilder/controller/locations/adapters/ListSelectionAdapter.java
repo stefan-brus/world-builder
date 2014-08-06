@@ -29,6 +29,9 @@ public class ListSelectionAdapter extends SelectionAdapter {
 
     public ListSelectionAdapter(LocationsController controller) {
         this.controller = controller;
+        this.controller.getView().getEditor().getNameField().setEnabled(false);
+    	this.controller.getView().getEditor().getDescField().setEnabled(false);
+        
     }
 
     /**
@@ -44,9 +47,14 @@ public class ListSelectionAdapter extends SelectionAdapter {
         if (idx >= 0)
         {
             Location loc = this.controller.getLocations().get(idx);
-
+                        
             this.controller.getView().getEditor().getNameField().setText(loc.getName());
             this.controller.getView().getEditor().getDescField().setText(loc.getDescription());
+        }
+        else
+        {
+        	this.controller.getView().getEditor().getNameField().setEnabled(false);
+        	this.controller.getView().getEditor().getDescField().setEnabled(false);
         }
     }
 }
