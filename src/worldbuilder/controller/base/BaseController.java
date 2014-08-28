@@ -35,7 +35,7 @@ public abstract class BaseController<ObjectType extends BaseObject, ViewType ext
      * The list of objects
      */
 
-    private List<ObjectType> objects;
+    protected List<ObjectType> objects;
 
     /**
      * Constructor
@@ -83,16 +83,20 @@ public abstract class BaseController<ObjectType extends BaseObject, ViewType ext
             }
         }
 
-        this.refreshView();
+        this.refreshView(true);
     }
 
     @Override
-    public void refreshView() {
-        this.view.getList().removeAll();
+    public void refreshView(boolean modelUpdated) {
+        if (modelUpdated) {
+            this.view.getList().removeAll();
 
-        for(ObjectType obj : this.objects) {
-            this.view.getList().add(obj.getName());
+            for(ObjectType obj : this.objects) {
+                this.view.getList().add(obj.getName());
+            }
         }
+
+        this.updateEditor();
     }
 
     /**
@@ -112,4 +116,10 @@ public abstract class BaseController<ObjectType extends BaseObject, ViewType ext
      */
 
     protected abstract void setUpControls();
+
+    /**
+     * Override this, updates the state of the view's editor
+     */
+
+    protected abstract void updateEditor();
 }

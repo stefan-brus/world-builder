@@ -43,7 +43,9 @@ public interface IController<ObjectType extends BaseObject, ViewType extends Bas
 
     /**
      * Refresh the view
+     *
+     * @param Whether or not the model has been updated
      */
 
-    void refreshView();
+    void refreshView(boolean modelUpdated);
 }

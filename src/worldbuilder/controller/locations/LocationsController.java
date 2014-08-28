@@ -75,4 +75,26 @@ public class LocationsController extends BaseController<Location, LocationsView>
         this.view.getList().addSelectionListener(this.listAdapter);
         this.view.getAddButton().addSelectionListener(this.addAdapter);
     }
+
+    @Override
+    protected void updateEditor() {
+        int idx = this.view.getList().getSelectionIndex();
+
+        if (idx >= 0) {
+            Location loc = this.objects.get(idx);
+
+            this.view.getEditor().getNameField().setText(loc.getName());
+            this.view.getEditor().getDescField().setText(loc.getDescription());
+
+            this.view.getEditor().getNameField().setEnabled(true);
+            this.view.getEditor().getDescField().setEnabled(true);
+        }
+        else {
+            this.view.getEditor().getNameField().setText("");
+            this.view.getEditor().getDescField().setText("");
+
+            this.view.getEditor().getNameField().setEnabled(false);
+            this.view.getEditor().getDescField().setEnabled(false);
+        }
+    }
 }

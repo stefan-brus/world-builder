@@ -32,7 +32,7 @@ public class RemoveAdapter extends BaseLocationsAdapter {
             this.controller.getView().getEditor().getNameField().setText("");
             this.controller.getView().getEditor().getDescField().setText("");
 
-            this.controller.refreshView();
+            this.controller.refreshView(true);
         }
     }
 }
