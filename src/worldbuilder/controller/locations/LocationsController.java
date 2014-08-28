@@ -9,6 +9,7 @@ import worldbuilder.controller.locations.adapters.ListSelectionAdapter;
 import worldbuilder.controller.locations.adapters.OpenAddDialogAdapter;
 import worldbuilder.controller.locations.adapters.RemoveSelectionAdapter;
 import worldbuilder.controller.locations.adapters.SaveSelectionAdapter;
+import worldbuilder.controller.locations.validators.LocationValidator;
 import worldbuilder.model.locations.Location;
 import worldbuilder.util.UIUtil;
 import worldbuilder.view.locations.LocationsView;
@@ -60,6 +61,12 @@ public class LocationsController {
     private OpenAddDialogAdapter addAdapter;
 
     /**
+     * The location validator
+     */
+
+    private LocationValidator validator;
+
+    /**
      * Constructor
      *
      * @param view The locations view reference
@@ -68,6 +75,7 @@ public class LocationsController {
     public LocationsController(LocationsView view) {
         this.view = view;
         this.locations = new ArrayList<Location>();
+        this.validator = new LocationValidator();
 
         this.setUpAdapters();
         this.setUpControls();
@@ -101,10 +109,10 @@ public class LocationsController {
      */
 
     public void saveLocation(Location loc, boolean add) {
-        if (loc.getName().length() == 0 || loc.getDescription().length() == 0) {
+        if (!this.validator.validate(loc)) {
             UIUtil.displayMessage(this.view.getShell(),
                 "Save error",
-                "A location must have a name and a description");
+                this.validator.getErrorMessage());
 
             return;
         }

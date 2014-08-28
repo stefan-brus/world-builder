@@ -1,5 +1,7 @@
 package worldbuilder.model.locations;
 
+import worldbuilder.model.base.BaseObject;
+
 /**
  * This POJO represents a location in the world.
  *
@@ -9,38 +11,13 @@ package worldbuilder.model.locations;
  *
  */
 
-public class Location {
-
-    /**
-     * The name of the location
-     */
-
-    private String name;
+public class Location extends BaseObject {
 
     /**
      * A description of the location
      */
 
     private String description;
-
-    /**
-     * Get the name
-     *
-     * @return The name
-     */
-
-    public String getName() {
-        return this.name;
-    }
-
-    /**
-     * Set the name
-     *
-     * @param name The new name
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
 
     /**
      * Get the description
