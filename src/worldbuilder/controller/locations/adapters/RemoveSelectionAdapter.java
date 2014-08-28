@@ -41,12 +41,12 @@ public class RemoveSelectionAdapter extends SelectionAdapter {
         int idx = this.controller.getView().getList().getSelectionIndex();
 
         if (idx >= 0) {
-            this.controller.getLocations().remove(idx);
+            this.controller.getObjectList().remove(idx);
 
             this.controller.getView().getEditor().getNameField().setText("");
             this.controller.getView().getEditor().getDescField().setText("");
 
-            this.controller.refreshLocationsList();
+            this.controller.refreshView();
         }
     }
 }

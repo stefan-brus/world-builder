@@ -46,6 +46,6 @@ public class SaveSelectionAdapter extends SelectionAdapter {
         loc.setName(locName);
         loc.setDescription(locDesc);
 
-        this.controller.saveLocation(loc, false);
+        this.controller.saveObject(loc, false);
     }
 }

@@ -46,7 +46,7 @@ public class OpenAddDialogAdapter extends SelectionAdapter {
         Location loc = dialog.open();
 
         if (loc != null && loc.getName() != null && loc.getDescription() != null) {
-            this.controller.saveLocation(loc, true);
+            this.controller.saveObject(loc, true);
         }
     }
 }

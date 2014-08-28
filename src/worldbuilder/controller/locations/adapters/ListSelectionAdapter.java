@@ -43,7 +43,7 @@ public class ListSelectionAdapter extends SelectionAdapter {
 
         if (idx >= 0)
         {
-            Location loc = this.controller.getLocations().get(idx);
+            Location loc = this.controller.getObjectList().get(idx);
 
             this.controller.getView().getEditor().getNameField().setText(loc.getName());
             this.controller.getView().getEditor().getDescField().setText(loc.getDescription());
