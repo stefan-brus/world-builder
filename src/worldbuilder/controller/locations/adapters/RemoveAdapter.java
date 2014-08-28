@@ -1,9 +1,7 @@
 package worldbuilder.controller.locations.adapters;
 
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
-
 import worldbuilder.controller.locations.LocationsController;
+import worldbuilder.controller.locations.adapters.base.BaseLocationsAdapter;
 
 /**
  * Selection adapter for removing locations
@@ -12,13 +10,7 @@ import worldbuilder.controller.locations.LocationsController;
  *
  */
 
-public class RemoveSelectionAdapter extends SelectionAdapter {
-
-    /**
-     * Reference to the controller
-     */
-
-    private LocationsController controller;
+public class RemoveAdapter extends BaseLocationsAdapter {
 
     /**
      * Constructor
@@ -26,18 +18,12 @@ public class RemoveSelectionAdapter extends SelectionAdapter {
      * @param controller Reference to the controller
      */
 
-    public RemoveSelectionAdapter(LocationsController controller) {
-        this.controller = controller;
+    public RemoveAdapter(LocationsController controller) {
+        super(controller);
     }
 
-    /**
-     * Button click handler
-     *
-     * @param e The event
-     */
-
     @Override
-    public void widgetSelected(SelectionEvent e) {
+    public void performAction() {
         int idx = this.controller.getView().getList().getSelectionIndex();
 
         if (idx >= 0) {

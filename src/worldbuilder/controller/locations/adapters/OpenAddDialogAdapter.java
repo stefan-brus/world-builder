@@ -1,10 +1,9 @@
 package worldbuilder.controller.locations.adapters;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
 
 import worldbuilder.controller.locations.LocationsController;
+import worldbuilder.controller.locations.adapters.base.BaseLocationsAdapter;
 import worldbuilder.model.locations.Location;
 import worldbuilder.view.locations.AddLocationDialog;
 
@@ -15,13 +14,7 @@ import worldbuilder.view.locations.AddLocationDialog;
  *
  */
 
-public class OpenAddDialogAdapter extends SelectionAdapter {
-
-    /**
-     * Reference to the controller
-     */
-
-    private LocationsController controller;
+public class OpenAddDialogAdapter extends BaseLocationsAdapter {
 
     /**
      * Constructor
@@ -30,17 +23,11 @@ public class OpenAddDialogAdapter extends SelectionAdapter {
      */
 
     public OpenAddDialogAdapter(LocationsController controller) {
-        this.controller = controller;
+        super(controller);
     }
 
-    /**
-     * Button click handler
-     *
-     * @param e The event
-     */
-
     @Override
-    public void widgetSelected(SelectionEvent e) {
+    public void performAction() {
         AddLocationDialog dialog = new AddLocationDialog(this.controller.getView().getShell(), SWT.NONE);
 
         Location loc = dialog.open();
