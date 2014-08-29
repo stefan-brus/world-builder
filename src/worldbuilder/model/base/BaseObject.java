@@ -7,13 +7,23 @@ package worldbuilder.model.base;
  *
  */
 
-public class BaseObject implements IObject {
+public abstract class BaseObject implements IObject {
 
     /**
      * The name of the character
      */
 
     private String name;
+
+    /**
+     * Constructor
+     *
+     * @param name = The name of this object
+     */
+
+    protected BaseObject(String name) {
+        this.name = name;
+    }
 
     @Override
     public String getName() {

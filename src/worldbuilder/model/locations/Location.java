@@ -20,6 +20,16 @@ public class Location extends BaseObject {
     private String description;
 
     /**
+     * Constructor
+     */
+
+    public Location () {
+        super("");
+
+        this.description = "";
+    }
+
+    /**
      * Get the description
      *
      * @return The description
