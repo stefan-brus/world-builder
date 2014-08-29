@@ -1,5 +1,6 @@
 package worldbuilder.controller;
 
+import worldbuilder.controller.characters.CharactersController;
 import worldbuilder.controller.locations.LocationsController;
 import worldbuilder.view.MainWindow;
 
@@ -26,6 +27,13 @@ public class Controllers {
     private LocationsController locationsController;
 
     /**
+     * The characters controller
+     */
+
+    @SuppressWarnings("unused")
+    private CharactersController charactersController;
+
+    /**
      * Constructor
      *
      * @param mainWindow The main window reference
@@ -43,5 +51,6 @@ public class Controllers {
 
     private void setUpControllers() {
         this.locationsController = new LocationsController(this.mainWindow.getLocationsView());
+        this.charactersController = new CharactersController(this.mainWindow.getCharactersView());
     }
 }

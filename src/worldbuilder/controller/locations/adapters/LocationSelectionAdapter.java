@@ -1,7 +1,7 @@
 package worldbuilder.controller.locations.adapters;
 
+import worldbuilder.controller.base.adapters.BaseSelectionAdapter;
 import worldbuilder.controller.locations.LocationsController;
-import worldbuilder.controller.locations.adapters.base.BaseLocationsAdapter;
 
 /**
  * Selection adapter for selecting locations from the list
@@ -10,7 +10,7 @@ import worldbuilder.controller.locations.adapters.base.BaseLocationsAdapter;
  *
  */
 
-public class ListSelectionAdapter extends BaseLocationsAdapter {
+public class LocationSelectionAdapter extends BaseSelectionAdapter<LocationsController> {
 
     /**
      * Constructor
@@ -18,12 +18,7 @@ public class ListSelectionAdapter extends BaseLocationsAdapter {
      * @param controller Reference to the controller
      */
 
-    public ListSelectionAdapter(LocationsController controller) {
+    public LocationSelectionAdapter(LocationsController controller) {
         super(controller);
-    }
-
-    @Override
-    public void performAction() {
-        this.controller.refreshView(false);
     }
 }

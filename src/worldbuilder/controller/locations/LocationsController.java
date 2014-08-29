@@ -3,10 +3,10 @@ package worldbuilder.controller.locations;
 import org.eclipse.swt.events.SelectionAdapter;
 
 import worldbuilder.controller.base.BaseController;
-import worldbuilder.controller.locations.adapters.ListSelectionAdapter;
-import worldbuilder.controller.locations.adapters.OpenAddDialogAdapter;
-import worldbuilder.controller.locations.adapters.RemoveAdapter;
-import worldbuilder.controller.locations.adapters.SaveAdapter;
+import worldbuilder.controller.locations.adapters.LocationSelectionAdapter;
+import worldbuilder.controller.locations.adapters.OpenAddLocationAdapter;
+import worldbuilder.controller.locations.adapters.RemoveLocationAdapter;
+import worldbuilder.controller.locations.adapters.SaveLocationAdapter;
 import worldbuilder.controller.locations.validators.LocationValidator;
 import worldbuilder.model.locations.Location;
 import worldbuilder.view.locations.LocationsView;
@@ -62,10 +62,10 @@ public class LocationsController extends BaseController<Location, LocationsView>
 
     @Override
     protected void initAdapters() {
-        this.saveAdapter = new SaveAdapter(this);
-        this.removeAdapter = new RemoveAdapter(this);
-        this.listAdapter = new ListSelectionAdapter(this);
-        this.addAdapter = new OpenAddDialogAdapter(this);
+        this.saveAdapter = new SaveLocationAdapter(this);
+        this.removeAdapter = new RemoveLocationAdapter(this);
+        this.listAdapter = new LocationSelectionAdapter(this);
+        this.addAdapter = new OpenAddLocationAdapter(this);
     }
 
     @Override
