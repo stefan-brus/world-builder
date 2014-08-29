@@ -17,12 +17,6 @@ import worldbuilder.view.base.BaseEditor;
 public class LocationEditor extends BaseEditor {
 
     /**
-     * The name text field
-     */
-
-    private Text nameField;
-
-    /**
      * The description text field
      */
 
@@ -40,16 +34,6 @@ public class LocationEditor extends BaseEditor {
     }
 
     /**
-     * Get the name field
-     *
-     * @return The name field
-     */
-
-    public Text getNameField() {
-        return this.nameField;
-    }
-
-    /**
      * Get the description field
      *
      * @return The description button
@@ -61,11 +45,6 @@ public class LocationEditor extends BaseEditor {
 
     @Override
     protected void initFields() {
-        Label nameLbl = new Label(this, SWT.NONE);
-        nameLbl.setText("Name");
-
-        this.nameField = new Text(this, SWT.SINGLE | SWT.BORDER);
-
         Label descLbl = new Label(this, SWT.NONE);
         descLbl.setText("Description");
 

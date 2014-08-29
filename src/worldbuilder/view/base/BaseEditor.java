@@ -4,6 +4,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Text;
 
 /**
  * Base class for all editors.
@@ -16,6 +18,12 @@ import org.eclipse.swt.widgets.Composite;
  */
 
 public abstract class BaseEditor extends Composite implements IEditor {
+
+    /**
+     * The name text field
+     */
+
+    private Text nameField;
 
     /**
      * The save button
@@ -43,6 +51,11 @@ public abstract class BaseEditor extends Composite implements IEditor {
     }
 
     @Override
+    public Text getNameField() {
+        return this.nameField;
+    }
+
+    @Override
     public Button getSaveButton() {
         return this.saveBtn;
     }
@@ -64,6 +77,11 @@ public abstract class BaseEditor extends Composite implements IEditor {
 
     private void initEditor() {
         this.setLayout(EDITOR_LAYOUT);
+
+        Label nameLbl = new Label(this, SWT.NONE);
+        nameLbl.setText("Name");
+
+        this.nameField = new Text(this, SWT.SINGLE | SWT.BORDER);
 
         this.initFields();
 

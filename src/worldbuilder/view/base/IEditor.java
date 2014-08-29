@@ -3,6 +3,7 @@ package worldbuilder.view.base;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Layout;
+import org.eclipse.swt.widgets.Text;
 
 /**
  * Editor component interface.
@@ -18,6 +19,14 @@ public interface IEditor {
      */
 
     Layout EDITOR_LAYOUT = new GridLayout(2, false);
+
+    /**
+     * Get the name field
+     *
+     * @return The name field
+     */
+
+    Text getNameField();
 
     /**
      * Get the save button
