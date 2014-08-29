@@ -1,7 +1,5 @@
 package worldbuilder.controller.locations;
 
-import org.eclipse.swt.events.SelectionAdapter;
-
 import worldbuilder.controller.base.BaseController;
 import worldbuilder.controller.locations.adapters.LocationSelectionAdapter;
 import worldbuilder.controller.locations.adapters.OpenAddLocationAdapter;
@@ -20,30 +18,6 @@ import worldbuilder.view.locations.LocationsView;
  */
 
 public class LocationsController extends BaseController<Location, LocationsView> {
-
-    /**
-     * The event listener for the save button
-     */
-
-    private SelectionAdapter saveAdapter;
-
-    /**
-     * The event listener for the remove button
-     */
-
-    private SelectionAdapter removeAdapter;
-
-    /**
-     * The event listener for the locations list
-     */
-
-    private SelectionAdapter listAdapter;
-
-    /**
-     * The event listener for the add button
-     */
-
-    private SelectionAdapter addAdapter;
 
     /**
      * Constructor
@@ -66,14 +40,6 @@ public class LocationsController extends BaseController<Location, LocationsView>
         this.removeAdapter = new RemoveLocationAdapter(this);
         this.listAdapter = new LocationSelectionAdapter(this);
         this.addAdapter = new OpenAddLocationAdapter(this);
-    }
-
-    @Override
-    protected void setUpControls() {
-        this.view.getEditor().getSaveButton().addSelectionListener(this.saveAdapter);
-        this.view.getEditor().getRemoveButton().addSelectionListener(this.removeAdapter);
-        this.view.getList().addSelectionListener(this.listAdapter);
-        this.view.getAddButton().addSelectionListener(this.addAdapter);
     }
 
     @Override

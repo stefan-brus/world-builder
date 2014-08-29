@@ -8,6 +8,7 @@ import org.eclipse.swt.widgets.Layout;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 
+import worldbuilder.view.characters.CharactersView;
 import worldbuilder.view.locations.LocationsView;
 
 /**
@@ -50,6 +51,12 @@ public class MainWindow extends Composite {
     private LocationsView locationsView;
 
     /**
+     * The characters view
+     */
+
+    private CharactersView charactersView;
+
+    /**
      * Constructor
      *
      * @param parent The parent component
@@ -73,6 +80,16 @@ public class MainWindow extends Composite {
     }
 
     /**
+     * Get the characters view
+     *
+     * @return The characters view
+     */
+
+    public CharactersView getCharactersView() {
+        return this.charactersView;
+    }
+
+    /**
      * Initialize the sub-components of the main window
      */
 
@@ -90,6 +107,10 @@ public class MainWindow extends Composite {
         this.locationsView = new LocationsView(this.tabs, SWT.NONE);
         locationsTab.setControl(this.locationsView);
 
-        this.tabs.pack();
+        TabItem charactersTab = new TabItem(this.tabs, SWT.NONE, 1);
+        charactersTab.setText("Characters");
+
+        this.charactersView = new CharactersView(this.tabs, SWT.NONE);
+        charactersTab.setControl(this.charactersView);
     }
 }

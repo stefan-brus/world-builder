@@ -3,6 +3,8 @@ package worldbuilder.controller.base;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.swt.events.SelectionAdapter;
+
 import worldbuilder.controller.base.validators.BaseValidator;
 import worldbuilder.model.base.BaseObject;
 import worldbuilder.util.UIUtil;
@@ -36,6 +38,30 @@ public abstract class BaseController<ObjectType extends BaseObject, ViewType ext
      */
 
     protected List<ObjectType> objects;
+
+    /**
+     * The event listener for the save button
+     */
+
+    protected SelectionAdapter saveAdapter;
+
+    /**
+     * The event listener for the remove button
+     */
+
+    protected SelectionAdapter removeAdapter;
+
+    /**
+     * The event listener for the locations list
+     */
+
+    protected SelectionAdapter listAdapter;
+
+    /**
+     * The event listener for the add button
+     */
+
+    protected SelectionAdapter addAdapter;
 
     /**
      * Constructor
@@ -112,14 +138,19 @@ public abstract class BaseController<ObjectType extends BaseObject, ViewType ext
     protected abstract void initAdapters();
 
     /**
-     * Override this, sets up the controls (attaches adapters to the UI)
-     */
-
-    protected abstract void setUpControls();
-
-    /**
      * Override this, updates the state of the view's editor
      */
 
     protected abstract void updateEditor();
+
+    /**
+     * Set up the controls (attaches adapters to the UI)
+     */
+
+    private void setUpControls() {
+        this.view.getEditor().getSaveButton().addSelectionListener(this.saveAdapter);
+        this.view.getEditor().getRemoveButton().addSelectionListener(this.removeAdapter);
+        this.view.getList().addSelectionListener(this.listAdapter);
+        this.view.getAddButton().addSelectionListener(this.addAdapter);
+    }
 }
