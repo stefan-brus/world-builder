@@ -2,6 +2,7 @@ package worldbuilder.controller.characters.adapters;
 
 import worldbuilder.controller.base.adapters.BaseRemoveAdapter;
 import worldbuilder.controller.characters.CharactersController;
+import worldbuilder.model.World;
 
 /**
  * Selection adapter for removing characters
@@ -28,5 +29,10 @@ public class RemoveCharacterAdapter extends BaseRemoveAdapter<CharactersControll
         this.controller.getView().getEditor().getBirthYearField().setSelection(0);
         this.controller.getView().getEditor().getBirthPlaceField().setItems(new String[0]);
         this.controller.getView().getEditor().getBackgroundField().setText("");
+    }
+
+    @Override
+    protected void removeObject(String name) {
+        World.instance().removeCharacter(name);
     }
 }

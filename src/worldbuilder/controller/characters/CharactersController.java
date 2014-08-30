@@ -6,6 +6,7 @@ import worldbuilder.controller.characters.adapters.OpenAddCharacterAdapter;
 import worldbuilder.controller.characters.adapters.RemoveCharacterAdapter;
 import worldbuilder.controller.characters.adapters.SaveCharacterAdapter;
 import worldbuilder.controller.characters.validators.CharacterValidator;
+import worldbuilder.model.World;
 import worldbuilder.model.characters.Character;
 import worldbuilder.view.characters.CharactersView;
 
@@ -44,10 +45,10 @@ public class CharactersController extends BaseController<Character, CharactersVi
 
     @Override
     protected void updateEditor() {
-        int idx = this.view.getList().getSelectionIndex();
+        String[] selected = this.view.getList().getSelection();
 
-        if (idx >= 0) {
-            Character chr = this.objects.get(idx);
+        if (selected.length > 0) {
+            Character chr = World.instance().getCharacter(selected[0]);
 
             this.view.getEditor().getNameField().setText(chr.getName());
             this.view.getEditor().getBirthYearField().setSelection(chr.getYearOfBirth());
@@ -75,4 +76,13 @@ public class CharactersController extends BaseController<Character, CharactersVi
         }
     }
 
+    @Override
+    protected void saveSpecificObject(Character obj) {
+        World.instance().putCharacter(obj);
+    }
+
+    @Override
+    protected String[] getObjectNames() {
+        return World.instance().getCharacters().stream().map((obj) -> obj.getName()).toArray(String[]::new);
+    }
 }

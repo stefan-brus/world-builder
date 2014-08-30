@@ -6,6 +6,7 @@ import worldbuilder.controller.locations.adapters.OpenAddLocationAdapter;
 import worldbuilder.controller.locations.adapters.RemoveLocationAdapter;
 import worldbuilder.controller.locations.adapters.SaveLocationAdapter;
 import worldbuilder.controller.locations.validators.LocationValidator;
+import worldbuilder.model.World;
 import worldbuilder.model.locations.Location;
 import worldbuilder.view.locations.LocationsView;
 
@@ -44,10 +45,10 @@ public class LocationsController extends BaseController<Location, LocationsView>
 
     @Override
     protected void updateEditor() {
-        int idx = this.view.getList().getSelectionIndex();
+        String[] selected = this.view.getList().getSelection();
 
-        if (idx >= 0) {
-            Location loc = this.objects.get(idx);
+        if (selected.length > 0) {
+            Location loc = World.instance().getLocation(selected[0]);
 
             this.view.getEditor().getNameField().setText(loc.getName());
             this.view.getEditor().getDescField().setText(loc.getDescription());
@@ -62,5 +63,15 @@ public class LocationsController extends BaseController<Location, LocationsView>
             this.view.getEditor().getNameField().setEnabled(false);
             this.view.getEditor().getDescField().setEnabled(false);
         }
+    }
+
+    @Override
+    protected void saveSpecificObject(Location obj) {
+        World.instance().putLocation(obj);
+    }
+
+    @Override
+    protected String[] getObjectNames() {
+        return World.instance().getLocations().stream().map((obj) -> obj.getName()).toArray(String[]::new);
     }
 }

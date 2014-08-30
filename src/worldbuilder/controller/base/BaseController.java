@@ -1,8 +1,5 @@
 package worldbuilder.controller.base;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.swt.events.SelectionAdapter;
 
 import worldbuilder.controller.base.validators.BaseValidator;
@@ -32,12 +29,6 @@ public abstract class BaseController<ObjectType extends BaseObject, ViewType ext
      */
 
     protected ViewType view;
-
-    /**
-     * The list of objects
-     */
-
-    protected List<ObjectType> objects;
 
     /**
      * The event listener for the save button
@@ -71,7 +62,6 @@ public abstract class BaseController<ObjectType extends BaseObject, ViewType ext
 
     public BaseController(ViewType view) {
         this.view = view;
-        this.objects = new ArrayList<ObjectType>();
 
         this.initValidator();
         this.initAdapters();
@@ -84,12 +74,7 @@ public abstract class BaseController<ObjectType extends BaseObject, ViewType ext
     }
 
     @Override
-    public List<ObjectType> getObjectList() {
-        return this.objects;
-    }
-
-    @Override
-    public void saveObject(ObjectType obj, boolean add) {
+    public void saveObject(ObjectType obj) {
         if (!this.validator.validate(obj)) {
             UIUtil.displayMessage(this.view.getShell(),
                 "Save error",
@@ -98,16 +83,7 @@ public abstract class BaseController<ObjectType extends BaseObject, ViewType ext
             return;
         }
 
-        if (add) {
-            this.objects.add(obj);
-        }
-        else {
-            int idx = this.view.getList().getSelectionIndex();
-
-            if (idx >= 0) {
-                this.objects.set(idx, obj);
-            }
-        }
+        this.saveSpecificObject(obj);
 
         this.refreshView(true);
     }
@@ -117,8 +93,8 @@ public abstract class BaseController<ObjectType extends BaseObject, ViewType ext
         if (modelUpdated) {
             this.view.getList().removeAll();
 
-            for(ObjectType obj : this.objects) {
-                this.view.getList().add(obj.getName());
+            for(String name : this.getObjectNames()) {
+                this.view.getList().add(name);
             }
         }
 
@@ -142,6 +118,20 @@ public abstract class BaseController<ObjectType extends BaseObject, ViewType ext
      */
 
     protected abstract void updateEditor();
+
+    /**
+     * Override this, save a specific object
+     */
+
+    protected abstract void saveSpecificObject(ObjectType obj);
+
+    /**
+     * Get the names of all objects
+     *
+     * @return An array with all object names
+     */
+
+    protected abstract String[] getObjectNames();
 
     /**
      * Set up the controls (attaches adapters to the UI)

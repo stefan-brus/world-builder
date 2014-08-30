@@ -2,6 +2,7 @@ package worldbuilder.controller.locations.adapters;
 
 import worldbuilder.controller.base.adapters.BaseRemoveAdapter;
 import worldbuilder.controller.locations.LocationsController;
+import worldbuilder.model.World;
 
 /**
  * Selection adapter for removing locations
@@ -25,5 +26,10 @@ public class RemoveLocationAdapter extends BaseRemoveAdapter<LocationsController
     @Override
     protected void clearEditor() {
         this.controller.getView().getEditor().getDescField().setText("");
+    }
+
+    @Override
+    protected void removeObject(String name) {
+        World.instance().removeLocation(name);
     }
 }

@@ -40,7 +40,7 @@ public abstract class BaseAddDialogAdapter<ObjectType extends BaseObject, Dialog
         ObjectType result = this.dialog.open();
 
         if (result != null) {
-            this.controller.saveObject(result, true);
+            this.controller.saveObject(result);
         }
     }
 

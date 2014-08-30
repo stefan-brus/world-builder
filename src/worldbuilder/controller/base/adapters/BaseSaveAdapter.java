@@ -33,7 +33,7 @@ public abstract class BaseSaveAdapter<ObjectType extends BaseObject, ControllerT
 
         obj.setName(name);
 
-        this.controller.saveObject(obj, false);
+        this.controller.saveObject(obj);
     }
 
     /**

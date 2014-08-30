@@ -25,10 +25,10 @@ public abstract class BaseRemoveAdapter<ControllerType extends BaseController<?,
 
     @Override
     protected void performAction() {
-        int idx = this.controller.getView().getList().getSelectionIndex();
+        String[] selected = this.controller.getView().getList().getSelection();
 
-        if (idx >= 0) {
-            this.controller.getObjectList().remove(idx);
+        if (selected.length > 0) {
+            this.removeObject(selected[0]);
 
             this.controller.getView().getEditor().getNameField().setText("");
 
@@ -43,4 +43,12 @@ public abstract class BaseRemoveAdapter<ControllerType extends BaseController<?,
      */
 
     protected abstract void clearEditor();
+
+    /**
+     * Override this, remove an object from the world
+     *
+     * @param name The name of the object to remove
+     */
+
+    protected abstract void removeObject(String name);
 }
