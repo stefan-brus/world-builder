@@ -70,6 +70,12 @@ public abstract class BaseAddDialog<ObjectType extends BaseObject, EditorType ex
 
     public ObjectType open() {
         Shell parent = this.getParent();
+
+        if (this.shell.isDisposed()) {
+            this.shell = new Shell(parent, SWT.DIALOG_TRIM | SWT.APPLICATION_MODAL);
+            this.initDialog();
+        }
+
         this.shell.setText(this.getText());
         this.shell.setLayout(new FillLayout());
 
