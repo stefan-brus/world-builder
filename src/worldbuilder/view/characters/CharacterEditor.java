@@ -8,6 +8,7 @@ import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.swt.widgets.Text;
 
 import worldbuilder.view.base.BaseEditor;
+import worldbuilder.view.widgets.YearSpinner;
 
 /**
  * The character editor component.
@@ -22,7 +23,7 @@ public class CharacterEditor extends BaseEditor {
      * The year of birth spinner
      */
 
-    private Spinner birthYearField;
+    private YearSpinner birthYearField;
 
     /**
      * The place of birth combo box
@@ -82,7 +83,7 @@ public class CharacterEditor extends BaseEditor {
         Label yearLbl = new Label(this, SWT.NONE);
         yearLbl.setText("Year of birth");
 
-        this.birthYearField = new Spinner(this, SWT.NONE);
+        this.birthYearField = new YearSpinner(this);
 
         Label placeLbl = new Label(this, SWT.NONE);
         placeLbl.setText("Place of birth");
